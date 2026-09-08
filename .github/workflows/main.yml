@@ -18,6 +18,9 @@ concurrency:
 jobs:
   build_and_release:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: OnebuttonAppFolder
 
     steps:
       - name: 📂 Checkout code
@@ -27,7 +30,7 @@ jobs:
         uses: actions/cache@v5
         with:
           path: ~/.pub-cache
-          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.yaml') }}
+          key: ${{ runner.os }}-pub-${{ hashFiles('OnebuttonAppFolder/**/pubspec.yaml') }}
           restore-keys: ${{ runner.os }}-pub-
 
       - name: ☕️ Setup Java (Temurin 17)
